@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDN 09 Mempawah Hilir | Cerdas Yang Berkarakter</title>
+  <meta name="description" content="Website resmi SDN 09 Mempawah Hilir. Cerdas Yang Berkarakter.">
+  <style>
+    :root{
+      --blue:#14288f;
+      --blue2:#1d43b8;
+      --green:#39a52c;
+      --orange:#ff6b1a;
+      --light:#f5f8fc;
+      --dark:#182033;
+      --muted:#64748b;
+      --white:#fff;
+      --shadow:0 12px 30px rgba(20,40,143,.10);
+      --radius:20px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--dark);
+      background:#fff;
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(1120px,92%);margin:auto}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(10px);
+      box-shadow:0 2px 18px rgba(0,0,0,.07);
+    }
+    .nav{
+      min-height:76px;display:flex;align-items:center;
+      justify-content:space-between;gap:20px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:52px;height:52px;object-fit:contain}
+    .brand-text strong{display:block;color:var(--blue);font-size:16px}
+    .brand-text span{font-size:12px;color:var(--muted)}
+    nav ul{display:flex;gap:25px;list-style:none}
+    nav a{font-size:14px;font-weight:700;color:#334155}
+    nav a:hover{color:var(--blue)}
+    .menu-btn{display:none;border:0;background:var(--blue);color:#fff;border-radius:10px;padding:9px 12px;font-size:20px}
+
+    /* HERO */
+    .hero{
+      min-height:650px;
+      position:relative;
+      display:flex;align-items:center;
+      background:
+        linear-gradient(90deg,rgba(10,25,85,.86),rgba(10,25,85,.55),rgba(10,25,85,.18)),
+        url("images/gedung-sekolah.jpeg") center/cover;
+      overflow:hidden;
+    }
+    .hero-content{position:relative;z-index:2;color:#fff;padding:85px 0;max-width:720px}
+    .eyebrow{
+      display:inline-block;background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.3);
+      padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;
+      margin-bottom:18px;
+    }
+    .hero h1{font-size:clamp(34px,5vw,62px);line-height:1.08;margin-bottom:14px}
+    .hero h2{font-size:clamp(20px,3vw,30px);font-weight:500;margin-bottom:18px}
+    .hero p{max-width:680px;font-size:17px;color:#eef3ff}
+    .btn{
+      display:inline-block;margin-top:28px;background:#fff;color:var(--blue);
+      padding:13px 22px;border-radius:12px;font-weight:800;
+      box-shadow:0 8px 20px rgba(0,0,0,.15);
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .mascot{
+      position:absolute;right:5%;bottom:0;width:min(300px,30vw);
+      max-height:92%;object-fit:contain;object-position:bottom;
+      filter:drop-shadow(0 15px 18px rgba(0,0,0,.25));
+    }
+
+    /* COMMON */
+    section{padding:78px 0}
+    .section-title{text-align:center;margin-bottom:42px}
+    .section-title .small{color:var(--green);font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1px}
+    .section-title h2{font-size:34px;margin:5px 0 8px;color:var(--blue)}
+    .section-title p{color:var(--muted);max-width:680px;margin:auto}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+
+    /* STATS */
+    .stats{margin-top:-45px;position:relative;z-index:5}
+    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .stat{
+      background:#fff;border-radius:18px;padding:25px;text-align:center;
+      box-shadow:var(--shadow);border:1px solid #edf1f7
+    }
+    .stat strong{display:block;font-size:34px;color:var(--blue)}
+    .stat span{color:var(--muted);font-weight:700}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+    .about-photo{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .about-photo img{width:100%;height:350px;object-fit:cover}
+    .about-text h3{font-size:28px;color:var(--blue);margin-bottom:12px}
+    .about-text p{color:var(--muted);margin-bottom:15px}
+
+    /* SAMBUTAN */
+    .welcome{background:var(--light)}
+    .welcome-box{
+      background:#fff;border-radius:var(--radius);padding:38px;
+      display:grid;grid-template-columns:240px 1fr;gap:35px;align-items:center;
+      box-shadow:var(--shadow)
+    }
+    .principal img{
+      width:210px;height:260px;object-fit:cover;object-position:center top;
+      border-radius:18px;margin:auto
+    }
+    .welcome-text h3{font-size:28px;color:var(--blue);margin-bottom:4px}
+    .welcome-text .name{font-weight:800;color:var(--green);margin-bottom:18px}
+    .welcome-text p{color:var(--muted);margin-bottom:12px}
+
+    /* VISI MISI */
+    .visi{background:#fff}
+    .visi-box{
+      background:linear-gradient(135deg,#14288f,#1d43b8);
+      color:#fff;border-radius:var(--radius);padding:38px;
+      text-align:center;box-shadow:var(--shadow);margin-bottom:25px
+    }
+    .visi-box h3{font-size:22px;margin-bottom:12px}
+    .visi-box p{font-size:19px;font-weight:600}
+    .misi-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+    .misi-item{
+      padding:20px;border:1px solid #e7ebf2;border-radius:15px;
+      background:#fff;box-shadow:0 5px 18px rgba(0,0,0,.04)
+    }
+    .misi-item b{color:var(--green);margin-right:7px}
+
+
+    /* MAKLUMAT PELAYANAN */
+    .maklumat{background:linear-gradient(180deg,#f5f8fc,#ffffff)}
+    .maklumat-container{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:25px;
+      max-width:1120px;
+      margin:auto;
+    }
+    .maklumat-card{
+      background:#fff;border:1px solid #e7ebf2;
+      border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .maklumat-card img{
+      width:100%;height:380px;object-fit:cover;border-radius:14px;
+      cursor:zoom-in;background:#eef3ff;
+    }
+    .maklumat-note{text-align:center;color:var(--muted);font-size:14px;margin-top:14px}
+    .lightbox{
+      display:none;position:fixed;inset:0;background:rgba(5,12,40,.88);
+      z-index:2000;align-items:center;justify-content:center;padding:25px;
+    }
+    .lightbox.show{display:flex}
+    .lightbox img{max-width:95vw;max-height:92vh;width:auto;height:auto;object-fit:contain;
+      border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .lightbox-close{
+      position:absolute;top:18px;right:22px;width:46px;height:46px;border:0;
+      border-radius:50%;background:#fff;color:var(--blue);font-size:28px;
+      cursor:pointer;font-weight:700;
+    }
+
+    /* PROGRAM */
+    .program-card{
+      background:#fff;border:1px solid #e7ebf2;border-radius:var(--radius);
+      padding:30px;box-shadow:var(--shadow)
+    }
+    .icon{
+      width:58px;height:58px;border-radius:16px;background:#eef3ff;
+      display:grid;place-items:center;font-size:29px;margin-bottom:18px
+    }
+    .program-card h3{color:var(--blue);margin-bottom:8px}
+    .program-card p{color:var(--muted)}
+
+    /* BERITA */
+    .news-card{
+      border:1px solid #e7ebf2;border-radius:18px;overflow:hidden;
+      background:#fff;box-shadow:0 8px 22px rgba(0,0,0,.05)
+    }
+    .news-placeholder{
+      height:190px;background:linear-gradient(135deg,#eaf0ff,#f4f7fb);
+      display:grid;place-items:center;font-size:48px
+    }
+    .news-body{padding:22px}
+    .news-body small{color:var(--green);font-weight:800}
+    .news-body h3{color:var(--blue);margin:5px 0 8px}
+    .news-body p{color:var(--muted);font-size:14px}
+
+    /* GALLERY */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .gallery div{border-radius:15px;overflow:hidden;height:180px;background:#eaf0ff}
+    .gallery img{width:100%;height:100%;object-fit:cover;transition:.3s}
+    .gallery img:hover{transform:scale(1.04)}
+
+    /* CONTACT */
+    .contact{background:var(--light)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+    .contact-card{
+      background:#fff;padding:30px;border-radius:var(--radius);
+      box-shadow:var(--shadow)
+    }
+    .contact-item{display:flex;gap:15px;margin:18px 0}
+    .contact-icon{font-size:24px}
+    .contact-item strong{display:block;color:var(--blue)}
+    .contact-item span{color:var(--muted)}
+    .map{
+      min-height:330px;border-radius:var(--radius);
+      background:#dfe8f4;display:grid;place-items:center;
+      color:var(--muted);text-align:center;padding:30px
+    }
+
+    /* FOOTER */
+    footer{background:#111c55;color:#fff;padding:32px 0}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    footer p{font-size:13px;color:#dbe4ff}
+    .footer-brand{font-weight:800}
+
+    @media(max-width:850px){
+      nav{display:none}
+      .menu-btn{display:block}
+      nav.open{display:block;position:absolute;top:76px;left:0;right:0;background:#fff;padding:18px 4%;box-shadow:0 8px 15px rgba(0,0,0,.08)}
+      nav.open ul{flex-direction:column;gap:16px}
+      .hero{min-height:650px}
+      .mascot{opacity:.25;width:330px;right:-25px}
+      .about-grid,.contact-grid,.maklumat-container{grid-template-columns:1fr}
+      .welcome-box{grid-template-columns:1fr;text-align:center}
+      .cards{grid-template-columns:1fr 1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:560px){
+      .brand-text strong{font-size:13px}
+      .brand-text span{font-size:10px}
+      .brand img{width:45px;height:45px}
+      section{padding:58px 0}
+      .hero{min-height:620px}
+      .hero-content{padding:70px 0}
+      .hero p{font-size:15px}
+      .cards,.stats-grid,.misi-grid{grid-template-columns:1fr}
+      .about-photo img{height:260px}
+      .welcome-box{padding:24px}
+      .principal img{width:170px;height:220px}
+      .gallery div{height:140px}
+      .footer-inner{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#beranda" class="brand">
+      <img src="images/logo.jpeg" alt="Logo SDN 09 Mempawah Hilir">
+      <div class="brand-text">
+        <strong>SD Negeri 09 MEMPAWAH HILIR</strong>
+        <span>Cerdas Yang Berkarakter</span>
+      </div>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Buka menu">☰</button>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#maklumat">Maklumat</a></li>
+        <li><a href="#guru">Guru & Tendik</a></li>
+        <li><a href="#berita">Berita</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="beranda">
+    <div class="container">
+      <div class="hero-content">
+        <span class="eyebrow">WEBSITE RESMI SEKOLAH</span>
+        <h1>SD Negeri 09<br>Mempawah Hilir</h1>
+        <h2>Cerdas Yang Berkarakter</h2>
+        <p>Mewujudkan peserta didik berkarakter, beriman, terdepan dalam prestasi dan berwawasan lingkungan.</p>
+        <a class="btn" href="#profil">Kenali Sekolah Kami →</a>
+      </div>
+    </div>
+    <img class="mascot" src="images/maskot-si-mentari.jpeg" alt="Maskot Si Mentari SDN 09 Mempawah Hilir">
+  </section>
+
+  <section class="stats" aria-label="Data sekolah">
+    <div class="container stats-grid">
+      <div class="stat"><strong>85</strong><span>Siswa</span></div>
+      <div class="stat"><strong>8</strong><span>Guru</span></div>
+      <div class="stat"><strong>5</strong><span>Tenaga Kependidikan</span></div>
+    </div>
+  </section>
+
+  <section id="profil">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Profil Sekolah</div>
+        <h2>Tentang Sekolah</h2>
+        <p>Mengenal lebih dekat SDN 09 Mempawah Hilir.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-photo">
+          <img src="images/gedung-sekolah.jpeg" alt="Gedung SDN 09 Mempawah Hilir">
+        </div>
+        <div class="about-text">
+          <h3>SDN 09 Mempawah Hilir</h3>
+          <p>SDN 09 Mempawah Hilir berada di Jl. A. Rani, Desa Tanjung, Kecamatan Mempawah Hilir, Kabupaten Mempawah, Kalimantan Barat.</p>
+          <p>Sekolah berkomitmen mewujudkan peserta didik yang berkarakter, beriman, berprestasi, dan memiliki kepedulian terhadap lingkungan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="welcome" id="sambutan">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Kepala Sekolah</div>
+        <h2>Sambutan Kepala Sekolah</h2>
+      </div>
+      <div class="welcome-box">
+        <div class="principal">
+          <img src="images/kepala-sekolah.jpeg" alt="Hidaya, S.Pd, Kepala SDN 09 Mempawah Hilir">
+        </div>
+        <div class="welcome-text">
+          <h3>Selamat Datang</h3>
+          <div class="name">Hidaya, S.Pd — Kepala Sekolah</div>
+          <p>Selamat datang di website resmi SDN 09 Mempawah Hilir.</p>
+          <p>Website ini menjadi sarana informasi sekolah dan media untuk memperkenalkan berbagai kegiatan serta program yang dilaksanakan oleh sekolah.</p>
+          <p>Semoga website ini dapat memberikan informasi yang bermanfaat bagi peserta didik, orang tua, dan masyarakat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="visi">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Arah Sekolah</div>
+        <h2>Visi & Misi</h2>
+      </div>
+      <div class="visi-box">
+        <h3>VISI SEKOLAH</h3>
+        <p>“Mewujudkan peserta didik berkarakter, beriman, terdepan dalam prestasi dan berwawasan lingkungan.”</p>
+      </div>
+      <div class="misi-grid">
+        <div class="misi-item"><b>01.</b> Menumbuhkan dan melaksanakan penghayatan terhadap ajaran agama sehingga terbangun insan yang cerdas, berbudi pekerti luhur dan berakhlak mulia.</div>
+        <div class="misi-item"><b>02.</b> Membangun lingkungan sekolah yang bertoleransi dalam kebhinekaan global, mencintai budaya lokal dan menjunjung nilai gotong royong.</div>
+        <div class="misi-item"><b>03.</b> Membentuk sumber daya manusia yang bernalar kritis dan berprestasi sesuai dengan perkembangan jaman.</div>
+        <div class="misi-item"><b>04.</b> Menyediakan sarana dan prasarana untuk mendukung pembangunan potensi peserta didik agar berkembang secara optimal.</div>
+        <div class="misi-item"><b>05.</b> Membiasakan hidup bersih, sehat, disiplin dan bertanggung jawab.</div>
+        <div class="misi-item"><b>06.</b> Membangun citra sekolah sebagai mitra terpercaya di masyarakat.</div>
+        <div class="misi-item"><b>07.</b> Menata dan memperindah lingkungan sekolah untuk menuju sekolah yang berwawasan lingkungan hidup.</div>
+      </div>
+
+<!-- TAMBAHAN GAMBAR POSTER VISI & MISI -->
+      <div style="max-width: 520px; margin: 35px auto 0; background: #fff; border: 1px solid #e7ebf2; border-radius: 20px; padding: 18px; box-shadow: 0 12px 30px rgba(20,40,143,.10); text-align: center;">
+        <img src="images/visi-misi.jpeg" alt="Poster Visi dan Misi SDN 09 Mempawah Hilir" onclick="openMaklumat('images/visi-misi.jpg')" style="width: 100%; border-radius: 14px; cursor: zoom-in;">
+        <div style="color: #64748b; font-size: 14px; margin-top: 14px;">🔍 Klik gambar poster Visi & Misi untuk memperbesar.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="maklumat" id="maklumat">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Pelayanan Sekolah</div>
+        <h2>Maklumat & Jenis Pelayanan</h2>
+        <p>Komitmen SDN 09 Mempawah Hilir untuk memberikan pelayanan sesuai standar pelayanan kepada peserta didik, orang tua, dan masyarakat.</p>
+      </div>
+      <div class="maklumat-container">
+        <div class="maklumat-card">
+          <img src="images/maklumat.jpeg" alt="Maklumat Pelayanan SDN 09 Mempawah Hilir" onclick="openMaklumat('images/maklumat.jpeg')">
+          <div class="maklumat-note">🔍 Klik gambar Maklumat Pelayanan untuk memperbesar.</div>
+        </div>
+        <div class="maklumat-card">
+          <img src="images/pelayanan_2.jpeg" alt="Jenis Pelayanan SDN 09 Mempawah Hilir" onclick="openMaklumat('images/pelayanan_2.jpeg')">
+          <div class="maklumat-note">🔍 Klik gambar Jenis Pelayanan untuk memperbesar.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="guru">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Sekolah Kami</div>
+        <h2>Guru & Tenaga Kependidikan</h2>
+        <p>SDN 09 Mempawah Hilir memiliki 8 guru dan 5 tenaga kependidikan.</p>
+      </div>
+      <div class="cards">
+        <div class="program-card">
+          <div class="icon">👩‍🏫</div>
+          <h3>Guru</h3>
+          <p>8 orang guru yang mendampingi proses pembelajaran peserta didik.</p>
+        </div>
+        <div class="program-card">
+          <div class="icon">👥</div>
+          <h3>Tenaga Kependidikan</h3>
+          <p>5 orang tenaga kependidikan yang mendukung layanan sekolah.</p>
+        </div>
+        <div class="program-card">
+          <div class="icon">🏫</div>
+          <h3>Lingkungan Belajar</h3>
+          <p>Membangun lingkungan sekolah yang nyaman, bersih, sehat, dan berwawasan lingkungan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#f5f8fc">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Program Unggulan</div>
+        <h2>Kegiatan Sekolah</h2>
+        <p>Program yang menjadi bagian dari pengembangan budaya belajar di sekolah.</p>
+      </div>
+      <div class="cards">
+        <div class="program-card">
+          <div class="icon">📚</div>
+          <h3>Gerobak Literasi</h3>
+          <p>Program unggulan sekolah yang mendukung tumbuhnya budaya literasi peserta didik.</p>
+        </div>
+        <div class="program-card">
+          <div class="icon">🔢</div>
+          <h3>Taman Literasi Numerasi</h3>
+          <p>Ruang kegiatan yang mendukung pengembangan kemampuan literasi dan numerasi siswa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="berita">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Informasi & Media</div>
+        <h2>Berita & Kegiatan</h2>
+        <p>Kabar terbaru dan pemberitaan media mengenai SDN 09 Mempawah Hilir.</p>
+      </div>
+      <div class="cards">
+        <!-- Kartu Berita dari Jurnal Galaherang -->
+        <article class="news-card">
+          <div class="news-placeholder">🌙</div>
+          <div class="news-body">
+            <small>LIPUTAN MEDIA</small>
+            <h3>Rangkaian Semarak Ramadan SDN 09 Mempawah Hilir</h3>
+            <p>Berbagai kegiatan keagamaan dan lomba mewarnai kemeriahan Semarak Ramadan di SDN 09 Mempawah Hilir.</p>
+            <a href="https://www.jurnalgalaherang.com/2026/03/rangkaian-semarak-ramadan-sdn-09.html" target="_blank" rel="noopener" class="btn" style="padding: 8px 16px; font-size: 13px; margin-top: 12px; display: inline-block;">Baca Berita Selengkapnya →</a>
+          </div>
+        </article>
+
+        <!-- Kartu Berita dari Jurnal Galaherang -->
+        <article class="news-card">
+          <div class="news-placeholder">🌙</div>
+          <div class="news-body">
+            <small>LIPUTAN MEDIA</small>
+            <h3>Jelang Purna Tugas</h3>
+            <p>Suasana haru dan penuh penghormatan mewarnai upacara bendera pasca libur lebaran, di SDN 09 Mempawah Hilir</p>
+            <a href="https://www.jurnalgalaherang.com/2026/03/jelang-purna-tugas-korniawati-tinggalkan.html" target="_blank" rel="noopener" class="btn" style="padding: 8px 16px; font-size: 13px; margin-top: 12px; display: inline-block;">Baca Berita Selengkapnya →</a>
+          </div>
+        </article>
+
+                <!-- Kartu Berita dari Jurnal Galaherang -->
+        <article class="news-card">
+          <div class="news-placeholder">🌙</div>
+          <div class="news-body">
+            <small>LIPUTAN MEDIA</small>
+            <h3>Gebyar Hari Kartini SD Negeri 09 Mempawah</h3>
+            <p>Melalui kegiatan bertajuk Gebyar Hari Kartini, seluruh warga sekolah larut dalam kemeriahan yang sarat nilai budaya dan semangat emansipasi.</p>
+            <a href="https://www.jurnalgalaherang.com/2026/04/gebyar-hari-kartini-sd-negeri-09.html" target="_blank" rel="noopener" class="btn" style="padding: 8px 16px; font-size: 13px; margin-top: 12px; display: inline-block;">Baca Berita Selengkapnya →</a>
+          </div>
+        </article>
+
+        <!-- Kartu Berita Tambahan 1 -->
+        <article class="news-card">
+          <div class="news-placeholder">🏆</div>
+          <div class="news-body">
+            <small>PRESTASI</small>
+            <h3>Prestasi Siswa</h3>
+            <p>Tempat menampilkan informasi prestasi dan pencapaian peserta didik.</p>
+          </div>
+        </article>
+
+        <!-- Kartu Berita Tambahan 2 -->
+        <article class="news-card">
+          <div class="news-placeholder">📢</div>
+          <div class="news-body">
+            <small>PENGUMUMAN</small>
+            <h3>Pengumuman Sekolah</h3>
+            <p>Tempat menampilkan pengumuman penting untuk siswa dan orang tua.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeri">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Dokumentasi</div>
+        <h2>Galeri Sekolah</h2>
+        <p>Dokumentasi kegiatan dan lingkungan SDN 09 Mempawah Hilir.</p>
+      </div>
+      <div class="gallery">
+        <div><img src="images/gedung-sekolah.jpeg" alt="Gedung sekolah"></div>
+        <div><img src="images/maskot-si-mentari.jpeg" alt="Maskot Si Mentari"></div>
+        <div><img src="images/gedung-sekolah.jpeg" alt="Lingkungan sekolah"></div>
+        <div><img src="images/gedung-sekolah.jpeg" alt="Halaman sekolah"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontak">
+    <div class="container">
+      <div class="section-title">
+        <div class="small">Hubungi Kami</div>
+        <h2>Kontak Sekolah</h2>
+        <p>Informasi kontak SDN 09 Mempawah Hilir.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div><strong>Alamat</strong><span>Jl. A. Rani, Desa Tanjung, Kecamatan Mempawah Hilir, Kabupaten Mempawah, Kalimantan Barat</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div><strong>Email</strong><span>sdn09mempawahhilir@gmail.com</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div><strong>WhatsApp / Telepon</strong><span>085387872829</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🔢</div>
+            <div><strong>NPSN</strong><span>30101547</span></div>
+          </div>
+        </div>
+        <div class="map">
+          <div>
+            <div style="font-size:42px">📍</div>
+            <h3>Lokasi Sekolah</h3>
+            <p>Jl. A. Rani, Desa Tanjung,<br>Kecamatan Mempawah Hilir, Kabupaten Mempawah.</p>
+            <a class="btn" style="margin-top:18px" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=SDN%2009%20Mempawah%20Hilir">Buka Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="maklumatLightbox" onclick="closeMaklumat(event)">
+  <button class="lightbox-close" aria-label="Tutup">×</button>
+  <img id="lightboxImg" src="" alt="Gambar Pelayanan SDN 09 Mempawah Hilir">
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">SDN 09 MEMPAWAH HILIR</div>
+    <p>© 2026 SDN 09 Mempawah Hilir. Cerdas Yang Berkarakter.</p>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){
+    document.getElementById('mainNav').classList.toggle('open');
+  }
+  document.querySelectorAll('#mainNav a').forEach(function(link){
+    link.addEventListener('click',function(){
+      document.getElementById('mainNav').classList.remove('open');
+    });
+  });
+
+  function openMaklumat(src){
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('maklumatLightbox').classList.add('show');
+    document.body.style.overflow='hidden';
+  }
+
+  function closeMaklumat(event){
+    if(event.target.id==='maklumatLightbox' || event.target.classList.contains('lightbox-close')){
+      document.getElementById('maklumatLightbox').classList.remove('show');
+      document.body.style.overflow='';
+    }
+  }
+
+  document.addEventListener('keydown',function(event){
+    if(event.key==='Escape'){
+      document.getElementById('maklumatLightbox').classList.remove('show');
+      document.body.style.overflow='';
+    }
+  });
+</script>
+</body>
+</html>
